@@ -11,7 +11,8 @@ state = {
     {id: 'asda564654sdfsdf3',name: "Montana", "age": 31}
   ],
   showPersons: false,
-  selectedContainer: false
+  selectedContainer: false,
+  selected: null,
 }
 
 toggleHandler = () => {
@@ -38,7 +39,7 @@ nameChangeHandler = (event, id) => {
 
 changeColorHandler = (index) => {
   const isSelected = this.state.selectedContainer;
-   this.setState({selectedContainer: !isSelected})
+  this.setState({selected: this.state.persons[index].id, selectedContainer: !isSelected})
 }
 
 deletePersonHandler = (personIndex) => {
@@ -70,7 +71,7 @@ deletePersonHandler = (personIndex) => {
                     name={person.name}
                     changed={(event) => this.nameChangeHandler(event, person.id)}
                     age={person.age}
-                    className={this.state.selectedContainer ? "Person" : "Person-blue"}
+                    className={this.state.selected === person.id ? "Person" : "Person-blue"}
                     key= {person.id}/>
           })}
         </div> 
